@@ -1,54 +1,62 @@
-# -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.common.action_chains import ActionChains
-import time, unittest
-from add_new import ADD_NEW
 
 
-def is_alert_present(wd):
-    try:
-        wd.switch_to_alert().text
-        return True
-    except:
-        return False
+class Application:
 
-
-class test_add_new(unittest.TestCase):
-    def setUp(self):
+    def __init__(self):
         self.wd = WebDriver(capabilities={"marionette": False})
         self.wd.implicitly_wait(60)
 
-    def test_add_new(self):
-        self.open_home_page()
-        self.login(username="admin", password="secret")
-        self.open_add_new_page()
-        self.create_add_new(
-            ADD_NEW(name="ededede", middlename="deded", lastname="dededed", nickname="nickname", title="dededed",
-                    company="dededed", address="dededede",
-                    mobile="89032012010", work="87451241210", fax="87451201454", email="dsdsdfs@mail.ru", byear="1985",
-                    address2="dedededededrftrgtg", phone2="gtggtgtgtgtg", notes="gtgrfrffrfrfrf"))
-        self.return_to_home_page()
-        self.logout()
+    def open_home_page(self):
+        wd = self.wd
+        wd.get("http://localhost/addressbook/")
 
-    def test_add_empty_new(self):
+    def login(self,username, password):
+        wd = self.wd
         self.open_home_page()
-        self.login(username="admin", password="secret")
-        self.open_add_new_page()
-        self.create_add_new(ADD_NEW(name="", middlename="", lastname="", nickname="",
-                                    title="", company="", address="",
-                                    mobile="", work="", fax="", email="",
-                                    byear="",
-                                    address2="", phone2="", notes=""))
-        self.return_to_home_page()
-        self.logout()
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(username)
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(password)
+        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+
+    def open_groups_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("groups").click()
+
+    def create_group(self, group):
+        wd = self.wd
+        self.open_groups_page()
+        # init group creation
+        wd.find_element_by_name("new").click()
+        # fill group firm
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys(group.name)
+        wd.find_element_by_name("group_header").click()
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys(group.header)
+        wd.find_element_by_name("group_footer").click()
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys(group.footer)
+        # submit group creation
+        wd.find_element_by_name("submit").click()
+        self.return_to_groups_page()
+
+
+    def return_to_groups_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("group page").click()
 
     def logout(self):
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def return_to_home_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("home page").click()
+    def destroy(self):
+        self.wd.quit()
+
 
     def create_add_new(self, add_new):
         wd = self.wd
@@ -110,24 +118,3 @@ class test_add_new(unittest.TestCase):
     def open_add_new_page(self):
         wd = self.wd
         wd.find_element_by_link_text("add new").click()
-
-    def login(self, username, password):
-        wd = self.wd
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
-
-    def open_home_page(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
-
-    def tearDown(self):
-        self.wd.quit()
-
-
-if __name__ == '__main__':
-    unittest.main()
