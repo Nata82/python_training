@@ -68,6 +68,13 @@ class ADD_NEWHelper:
         # press enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+    def delete_first_add_new(self):
+        wd = self.app.wd
+        # select first add_new
+        wd.find_element_by_name("selected[]").click()
+        # submit deletion
+        wd.find_element_by_name("delete").click()
+
 
     def return_to_home_page(self):
         wd = self.app.wd
