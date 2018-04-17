@@ -1,3 +1,5 @@
 {
+  "test_add_new.py::test_add_empty_new": true,
+  "test_add_new.py::test_add_new": true,
   "test_add_new.py::test_add_new::test_test_add_new": true
 }
