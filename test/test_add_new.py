@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from add_new import ADD_NEW
 from fixture.application import Application
+from model.add_new import ADD_NEW
 
 
 @pytest.fixture
