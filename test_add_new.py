@@ -8,7 +8,7 @@ def app(request):
     fixture = Application()
     request.addfinalizer(fixture.destroy)
     return fixture
-
+# Ввод новый контакт
 def test_add_new(app):
     app.open_home_page()
     app.login(username="admin", password="secret")
