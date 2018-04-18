@@ -44,7 +44,6 @@ class ADD_NEWHelper:
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(add_new.fax)
-        wd.find_element_by_name("theform").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(add_new.email)
@@ -55,7 +54,6 @@ class ADD_NEWHelper:
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(add_new.byear)
-        wd.find_element_by_name("theform").click()
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys(add_new.address2)
@@ -76,6 +74,18 @@ class ADD_NEWHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.open_add_new_page()
+
+
+
+    def mod_add_new(self):
+        wd = self.app.wd
+        # select first add_new
+        wd.find_element_by_name("selected[]").click()
+        #нажимаем на редактирование
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+
+
+
 
 
     def return_to_home_page(self):
