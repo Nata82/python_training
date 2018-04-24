@@ -65,6 +65,7 @@ class CONTACTHelper:
         wd.find_element_by_name("notes").send_keys(add_new.notes)
         # press enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        
 
     def delete_first_add_new(self):
         wd = self.app.wd
