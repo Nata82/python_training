@@ -1,7 +1,7 @@
 
 
 
-class ADD_NEW:
+class CONTACT:
 
     def __init__(self,name, middlename, lastname, nickname, title, company, address, mobile, work,fax,
                  email, byear, address2, phone2, notes):

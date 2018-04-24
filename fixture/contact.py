@@ -1,7 +1,7 @@
 
 
 
-class ADD_NEWHelper:
+class CONTACTHelper:
 
     def __init__(self, app):
         self.app = app

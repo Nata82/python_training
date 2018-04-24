@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from model.add_new import ADD_NEW
+from model.contact import CONTACT
 
 # Ввод новый контакт
 def test_add_new(app):
@@ -7,7 +7,7 @@ def test_add_new(app):
     app.session.login(username="admin", password="secret")
     app.add_new.open_add_new_page()
     app.add_new.create(
-            ADD_NEW(name="ededede", middlename="deded", lastname="dededed", nickname="nickname", title="dededed",
+            CONTACT(name="ededede", middlename="deded", lastname="dededed", nickname="nickname", title="dededed",
                     company="dededed", address="dededede",
                     mobile="89032012010", work="87451241210", fax="87451201454", email="dsdsdfs@mail.ru", byear="1985",
                     address2="dedededededrftrgtg", phone2="gtggtgtgtgtg", notes="gtgrfrffrfrfrf"))
@@ -18,7 +18,7 @@ def test_add_empty_new(app):
     app.open_home_page()
     app.session.login(username="admin", password="secret")
     app.add_new.open_add_new_page()
-    app.add_new.create(ADD_NEW(name="", middlename="", lastname="", nickname="",
+    app.add_new.create(CONTACT(name="", middlename="", lastname="", nickname="",
                                title="", company="", address="",
                                mobile="", work="", fax="", email="",
                                byear="",
