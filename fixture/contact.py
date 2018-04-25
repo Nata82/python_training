@@ -13,7 +13,12 @@ class CONTACTHelper:
 
     def create(self, add_new):
         wd = self.app.wd
-        # fill add_new
+        self.fill_contact_form(add_new)
+        # press enter
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def fill_contact_form(self, add_new):
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(add_new.name)
@@ -63,19 +68,18 @@ class CONTACTHelper:
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(add_new.notes)
-        # press enter
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        
 
     def delete_first_add_new(self):
         wd = self.app.wd
-        # select first add_new
-        wd.find_element_by_name("selected[]").click()
+        self.select_first_contact()
         # submit deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.open_add_new_page()
 
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
 
 
     def mod_add_new(self):
@@ -86,10 +90,27 @@ class CONTACTHelper:
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
 
 
+    def modify_first_contact(self, new_contact_data):
+        wd = self.app.wd
+        #self.open_add_new_page()
+        #open modification form
+        self.mod_add_new()
+        # fill contact form
+        self.fill_contact_form(new_contact_data)
+        # submit modification
+        wd.find_element_by_name("update")
+        self.return_to_home_page()
+
 
 
 
     def return_to_home_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
+
+
+    def count(self):
+        wd = self.app.wd
+        self.open_add_new_page()
+        return len(wd.find_elements_by_name("selected[]"))
 

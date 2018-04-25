@@ -1,12 +1,3 @@
 [
-  "test/test_add_group.py::test_add_group",
-  "test/test_add_group.py::test_add_empty_group",
-  "test/test_add_new.py::test_add_new",
-  "test/test_add_new.py::test_add_empty_new",
-  "test/test_del_add_new.py::test_delete_first_add_new",
-  "test/test_del_group.py::test_delete_first_group",
-  "test/test_mod_add_new.py::test_mod_add_new",
-  "test/test_mod_group.py::test_mod_group",
-  "test/test_modify_group.py::test_modify_group_name",
-  "test/test_modify_group.py::test_modify_group_header"
+  "test/test_modify_contact.py::test_modify_add_new_name"
 ]
