@@ -13,6 +13,7 @@ class Application:
         self.add_new = CONTACTHelper(self)
 
 
+
     def is_valid(self):
         try:
             self.wd.current_url
