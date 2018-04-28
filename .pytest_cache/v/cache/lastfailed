@@ -1,5 +1,7 @@
 {
   "test/mod_group.py::test_add_group": true,
+  "test/test_del_group.py::test_delete_first_group": true,
+  "test/test_modifyok_contact.py::test_modifyok_contact": true,
   "test_add_new.py::test_add_empty_new": true,
   "test_add_new.py::test_add_new": true,
   "test_add_new.py::test_add_new::test_test_add_new": true
