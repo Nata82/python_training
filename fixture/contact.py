@@ -48,9 +48,21 @@ class CONTACTHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-    def delete_first_add_new(self):
+
+    def select_contact_by_index(self, index):
         wd = self.app.wd
-        self.select_first_contact()
+        wd.find_elements_by_name("selected[]")[index].click()
+
+
+
+    def delete_first_add_new(self):
+        self.delete_add_new_by_index(0)
+
+
+
+    def delete_add_new_by_index(self, index):
+        wd = self.app.wd
+        self.select_contact_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
@@ -70,12 +82,16 @@ class CONTACTHelper:
         #нажимаем на редактирование
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
 
+    def modifyok_first_add_new(self):
+        self.modifyok_add_new_by_index(0)
 
-    def modifyok_first_contact(self, new_contact_data):
+
+
+    def modifyok_contact_by_index(self, index, new_contact_data):
         #заходим на страницу home page
         wd = self.app.wd
         # wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         #модификация
         self.fill_contact_form(new_contact_data)
         #подтверждаю изменения

@@ -1,4 +1,5 @@
 from model.contact import CONTACT
+from random import randrange
 
 
 def test_modifyok_contact(app):
@@ -6,16 +7,17 @@ def test_modifyok_contact(app):
         app.add_new.create(CONTACT(name="test"))
     app.open_home_page()
     old_contacts = app.add_new.get_add_new_list()
+    index = randrange(len(old_contacts))
     contact = CONTACT(name="New contact")
-    contact.id = old_contacts[0].id
+    contact.id = old_contacts[index].id
     if contact.name is None:
-           contact.name = old_contacts[0].name
+           contact.name = old_contacts[index].name
     if contact.lastname is None:
-            contact.lastname = old_contacts[0].lastname
-    app.add_new.modifyok_first_contact(contact)
+            contact.lastname = old_contacts[index].lastname
+    app.add_new.modifyok_contact_by_index(index,contact)
     new_contacts = app.add_new.get_add_new_list()
     assert len(old_contacts) == len(new_contacts)
-    old_contacts[0] = contact
+    old_contacts[index] = contact
     assert sorted(old_contacts, key=CONTACT.id_or_max) == sorted(new_contacts, key=CONTACT.id_or_max)
 
 
