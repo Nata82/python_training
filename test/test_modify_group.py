@@ -13,12 +13,12 @@ def test_modify_group_name(app):
 
 
 #def test_modify_group_header(app):
- #   old_groups = app.group.get_group_list()
-  #  if app.group.count() == 0:
-   #     app.group.create(Group(name="test"))
-    #app.group.modify_first_group(Group(name="New header"))
-    #new_groups = app.group.get_group_list()
-    #assert len(old_groups) == len(new_groups)
+#   old_groups = app.group.get_group_list()
+#   if app.group.count() == 0:
+#      app.group.create(Group(name="test"))
+#      app.group.modify_first_group(Group(name="New header"))
+#   new_groups = app.group.get_group_list()
+#   assert len(old_groups) == len(new_groups)
 
 
 

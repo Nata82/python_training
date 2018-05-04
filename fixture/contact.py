@@ -1,4 +1,4 @@
-
+from model.contact import CONTACT
 
 
 class CONTACTHelper:
@@ -11,7 +11,7 @@ class CONTACTHelper:
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook") and len(
                 wd.find_element_by_xpath("//input[@value='Send e-Mail']")) > 0):
-           wd.find_element_by_link_text("add new").click()
+           wd.find_element_by_link_text("home").click()
 
     def create(self, add_new):
         wd = self.app.wd
@@ -70,25 +70,14 @@ class CONTACTHelper:
     def modifyok_first_contact(self, new_contact_data):
         #заходим на страницу home page
         wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
+        # wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         #модификация
         self.fill_contact_form(new_contact_data)
         #подтверждаю изменения
-        wd.find_element_by_name("update")
+        wd.find_element_by_name("update").click()
         #возвращаемся на страницу
         self.return_to_home_page()
-
-
-
-
-
-
-
-
-
-
-
 
 
     def return_to_home_page(self):
@@ -100,4 +89,22 @@ class CONTACTHelper:
         wd = self.app.wd
         self.open_add_new_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+
+    def get_add_new_list(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        list = []
+        for element in wd.find_elements_by_name("entry"):
+            lastname = element.find_element_by_xpath(".//td[2]").text
+            name = element.find_element_by_xpath(".//td[3]").text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            list.append(CONTACT(lastname=lastname, name=name, id=id))
+        return list
+
+
+
+
+
+
 
