@@ -7,7 +7,7 @@ def test_add_new(app):
     old_contacts = app.add_new.get_add_new_list()
     app.add_new.open_add_new_page()
     contact = CONTACT(name="ededede", middlename="deded", lastname="dededed", nickname="nickname", title="dededed",
-                    company="dededed", address="dededede",
+                    company="dededed", address="dededede",home="890320120",
                     mobile="89032012010", work="87451241210", fax="87451201454", email="dsdsdfs@mail.ru", byear="1985",
                     address2="dedededededrftrgtg", phone2="gtggtgtgtgtg", notes="gtgrfrffrfrfrf")
     app.add_new.create(contact)
