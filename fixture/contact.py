@@ -125,9 +125,11 @@ class CONTACTHelper:
                 cells = row.find_elements_by_tag_name("td")
                 lastname = cells[1].text
                 name = cells[2].text
+                address = cells[3].text
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+                all_email = cells[4].text
                 all_phones = cells[5].text
-                self.contact_cache.append(CONTACT(lastname=lastname, name=name, id=id,
+                self.contact_cache.append(CONTACT(lastname=lastname, name=name, id=id, address=address, all_email_from_home_page = all_email,
                                                   all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
 
@@ -161,7 +163,11 @@ class CONTACTHelper:
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
         work = wd.find_element_by_name("work").get_attribute("value")
         phone2 = wd.find_element_by_name("phone2").get_attribute("value")
-        return CONTACT(name=name, lastname=lastname, id=id,
+        address = wd.find_element_by_name("address").get_attribute("value")
+        email = wd.find_element_by_name("email").get_attribute("value")
+        email2 = wd.find_element_by_name("email2").get_attribute("value")
+        email3 = wd.find_element_by_name("email3").get_attribute("value")
+        return CONTACT(name=name, lastname=lastname, id=id, email=email, email2=email2, email3=email3, address=address,
                        home=home, mobile=mobile, work=work, phone2=phone2)
 
     def get_add_new_from_view_page(self, index):
