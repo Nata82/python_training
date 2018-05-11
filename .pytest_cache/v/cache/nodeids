@@ -1,3 +1,8 @@
 [
-  "test/test_modify_group.py::test_modify_group_name"
+  "test/test_add_new.py::test_add_new[None:::::::::::::::]",
+  "test/test_add_new.py::test_add_new[None:name Yq:lastname8\"FrRWG^:middlenamei?b -X:nicknameKU?X:titlesSpadr@ D:company-wj~ %:address`z:mobile0)`1:workwK:fax:emailR)5:byear 6M:address2p/R  K:phone2:notes h}]",
+  "test/test_add_new.py::test_add_new[None:name_p@Baw:lastname :middlename7A+E:nickname:title:company?Z1dz:address(2!s=n:mobileI\\\\:workwZ9:faxDK4wc3p$:email(TWJX :byearC!lW:address2:phone2[4v945:notesw8kb>.z7]",
+  "test/test_add_new.py::test_add_new[None:namelhHN :lastnameB1N0~ra :middlename#das ba[:nickname/q(0mJe:titlecTFtQ[:companymo t -:address:mobile3:work:fax  k\"-G%\":emailu<+ 2T':byearryS:address2xc\\\\ Y+jcmbh:phone2z:notes8Fb.]",
+  "test/test_add_new.py::test_add_new[None:name>q):lastnamev'%N3=cb:middlenameoeP?vu:nickname +U;J %va:titlei_OUoH:company3vv:address:mobile:work:faxiB4E88Z:email_2{Z;N+:byearRGv\\\\`b:address2:phone2W8:noteswF+C/c%9]",
+  "test/test_add_new.py::test_add_new[None:nameF9C6?:lastname=~2jkH0){:middlename K(`#&:nicknameo1.| :titleO07k9L9W:company6i2Ay:addressY ZH}m:mobile R v#ig:work1VOxE,q ;:faxt*`'tZ#:email 6 3W :byear#IJ9Aro:address2|6:phone2$x%:notes; \"L(fg]"
 ]

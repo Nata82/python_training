@@ -5,22 +5,28 @@ import random
 import string
 
 def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits + " "
+    symbols = string.ascii_letters + string.digits + string.punctuation + " "*10
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
+testdata = [CONTACT(name="", middlename="", lastname="", nickname="",
+                               title="", company="", address="",
+                               mobile="", work="", fax="", email="",
+                               byear="",
+                               address2="", phone2="", notes="")] + [
 
-testdata = [
-        CONTACT(name="ededede", middlename="deded", lastname="dededed", nickname="nickname", title="dededed",
-                company="dededed", address="dededede", home="890320120",
-                mobile="89032012010", work="87451241210", fax="87451201454", email="dsdsdfs@mail.ru", byear="1985",
-                address2="dedededededrftrgtg", phone2="gtggtgtgtgtg", notes="gtgrfrffrfrfrf"),
-        CONTACT(name="", middlename="", lastname="", nickname="",
-                   title="", company="", address="",
-                   mobile="", work="", fax="", email="",
-                   byear="",
-                   address2="", phone2="", notes="")
+               CONTACT(name=random_string("name", 10), middlename=random_string("middlename", 10),
+                       lastname=random_string("lastname", 10), nickname=random_string("nickname", 10),
+                       title=random_string("title", 15),
+                       company=random_string("company", 7), address=random_string("address", 8),
+                       home=random_string("home", 9),
+                       mobile=random_string("mobile", 8), work=random_string("work", 10), fax=random_string("fax", 9),
+                       email=random_string("email", 10), byear=random_string("byear", 8),
+                       address2=random_string("address2", 20), phone2=random_string("phone2", 8),
+                       notes=random_string("notes", 10))
+               for i in range(5)
     ]
+
 
 @pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
 def test_add_new(app, contact):
