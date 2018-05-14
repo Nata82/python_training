@@ -9,7 +9,7 @@ class Application:
         if browser == "firefox":
            self.wd = webdriver.Firefox(capabilities={"marionette": False})
         elif browser == "chrome":
-           self.wd = webdriver.Chrome()
+           self.wd = webdriver.Chrome("C:\Windows\SysWOW64\chromedriver.exe")
         elif browser == "ie":
            self.wd = webdriver.Ie()
         else:
