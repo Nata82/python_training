@@ -9,6 +9,10 @@ def random_string(prefix, maxlen):
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
+def phone(maxlen):
+    symbols = string.digits
+    return "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
+
 testdata = [CONTACT(name="", middlename="", lastname="", nickname="",
                                title="", company="", address="",
                                mobile="", work="", fax="", email="",
@@ -19,8 +23,8 @@ testdata = [CONTACT(name="", middlename="", lastname="", nickname="",
                        lastname=random_string("lastname", 10), nickname=random_string("nickname", 10),
                        title=random_string("title", 15),
                        company=random_string("company", 7), address=random_string("address", 8),
-                       home=random_string("home", 9),
-                       mobile=random_string("mobile", 8), work=random_string("work", 10), fax=random_string("fax", 9),
+                       home=phone(9),
+                       mobile=phone(9), work=random_string("work", 10), fax=random_string("fax", 9),
                        email=random_string("email", 10), byear=random_string("byear", 8),
                        address2=random_string("address2", 20), phone2=random_string("phone2", 8),
                        notes=random_string("notes", 10))

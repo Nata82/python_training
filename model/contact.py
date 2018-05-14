@@ -28,6 +28,7 @@ class CONTACT:
 
 
 
+
     def __repr__(self):
         return "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (self.id, self.name, self.lastname, self.middlename, self.nickname, self.title, self.company, self.address,
                              self.mobile, self.work, self.fax, self.email, self.byear, self.address2, self.phone2, self.notes)
