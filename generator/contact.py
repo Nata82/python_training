@@ -1,20 +1,28 @@
 from model.contact import CONTACT
 import random
 import string
+import os.path
+import json
+import getopt
+import sys
 
-constant = [
-CONTACT(name='name1', middlename='middlename1', lastname='lastname1', nickname='nickname1',
-                               title='title1', company='company1', address='address1',
-                               mobile='mobile1', work='work1', fax='fax1', email='email1',
-                               byear='byear1',
-                               address2='address21', phone2='phone21', notes='notes1'),
-CONTACT(name='name2', middlename='middlename2', lastname='lastname2', nickname='nickname2',
-                               title='title2', company='company2', address='address2',
-                               mobile='mobile2', work='work2', fax='fax2', email='email2',
-                               byear='byear2',
-                               address2='address22', phone2='phone22', notes='notes2')
-]
 
+
+try:
+    opts, args =getopt.getopt(sys.argv[1:], "n:f:", ["number of contacts", "file"])
+except getopt.GetoptError as err:
+    getopt.usage()
+    sys.exit(2)
+
+n = 5
+f = "data/contacts.json"
+
+
+for o, a in opts:
+    if o == "-n":
+        n = int(a)
+    elif o == "-f":
+        f = a
 
 def random_string(prefix, maxlen):
     symbols = string.ascii_letters + string.digits + string.punctuation + " "*10
@@ -40,5 +48,10 @@ testdata = [CONTACT(name="", middlename="", lastname="", nickname="",
                        email=random_string("email", 10), byear=random_string("byear", 8),
                        address2=random_string("address2", 20), phone2=random_string("phone2", 8),
                        notes=random_string("notes", 10))
-               for i in range(5)
-    ]
+               for i in range(n)
+]
+
+file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)
+
+with open(file, "w") as out:
+    out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))
