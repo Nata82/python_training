@@ -2,7 +2,6 @@ from model.contact import CONTACT
 
 
 
-
 testdata = [
 CONTACT(name='name1', middlename='middlename1', lastname='lastname1', nickname='nickname1',
                                title='title1', company='company1', address='address1',

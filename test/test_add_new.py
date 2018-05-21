@@ -3,7 +3,6 @@ from model.contact import CONTACT
 
 
 
-
 def test_add_new(app, json_contacts):
     contact = json_contacts
     old_contacts = app.add_new.get_add_new_list()
