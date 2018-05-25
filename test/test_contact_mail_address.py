@@ -2,10 +2,14 @@ import re
 from model.contact import CONTACT
 
 def test_phones_on_home_page(app, db):
-    contact_from_home_page = app.add_new.get_add_new_list()
-    contact_from_homes_page = db.get_add_new_list()
-    assert sorted(contact_from_homes_page, key=CONTACT.id_or_max) == sorted(contact_from_home_page, key=CONTACT.id_or_max)
-
+    from_ui = sorted(app.add_new.get_add_new_list(), key=CONTACT.id_or_max)
+    from_db = sorted(db.get_add_new_list(), key=CONTACT.id_or_max)
+    assert len(from_ui) == len(from_db)
+    for i in range(len(from_ui)):
+        assert clear(from_ui[i].all_phones_from_home_page) == merge_phones_like_on_home_page(from_db[i])
+        assert clear(from_ui[i].all_email_from_home_page) == merge_email_like_on_home_page(from_db[i])
+        assert from_ui[i].address == from_db[i].address
+        assert from_ui[i].lastname == from_db[i].lastname
 
 def clear(s):
     return re.sub("[() -]", "", s)
