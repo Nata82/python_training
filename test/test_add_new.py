@@ -3,13 +3,12 @@ from model.contact import CONTACT
 
 
 
-def test_add_new(app, json_contacts):
+def test_add_new(app, db, json_contacts):
     contact = json_contacts
-    old_contacts = app.add_new.get_add_new_list()
+    old_contacts = db.get_add_new_list()
     app.add_new.open_add_new_page()
     app.add_new.create(contact)
-    assert len(old_contacts) + 1 == app.add_new.count()
-    new_contacts = app.add_new.get_add_new_list()
+    new_contacts = db.get_add_new_list()
     app.add_new.return_to_home_page()
     old_contacts.append(contact)
     assert sorted(old_contacts, key=CONTACT.id_or_max) == sorted(new_contacts, key=CONTACT.id_or_max)

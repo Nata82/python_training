@@ -70,6 +70,23 @@ class CONTACTHelper:
         self.contact_cache = None
 
 
+
+    def delete_add_new_by_id(self, id):
+        wd = self.app.wd
+        self.select_contact_by_id(id)
+        # submit deletion
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+        self.open_add_new_page()
+        self.contact_cache = None
+
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_xpath(".//input[@value='%s']" % id).click()
+
+
+
     def select_first_contact(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
@@ -99,6 +116,22 @@ class CONTACTHelper:
         #возвращаемся на страницу
         self.return_to_home_page()
         self.contact_cache = None
+
+
+    def modifyok_contact_by_id(self, id, contact):
+        #заходим на страницу home page
+        wd = self.app.wd
+        # wd.find_element_by_name("selected[]").click()
+        # wd.find_element_by_css_selector("a[href='edit.php?id=%s']" % contact.id)
+        wd.find_element_by_xpath('.//a[@href="edit.php?id=%s"]' % id).click()
+        #модификация
+        self.fill_contact_form(contact)
+        #подтверждаю изменения
+        wd.find_element_by_name("update").click()
+        #возвращаемся на страницу
+        self.return_to_home_page()
+        self.contact_cache = None
+
 
 
     def return_to_home_page(self):
