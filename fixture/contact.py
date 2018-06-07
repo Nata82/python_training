@@ -8,7 +8,7 @@ class CONTACTHelper:
         self.app = app
 
 
-    def open_add_new_page(self):
+    def open_home_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook") and len(
                 wd.find_element_by_xpath("//input[@value='Send e-Mail']")) > 0):
@@ -67,7 +67,7 @@ class CONTACTHelper:
         # submit deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
-        self.open_add_new_page()
+        self.open_home_page()
         self.contact_cache = None
 
 
@@ -78,7 +78,7 @@ class CONTACTHelper:
         # submit deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
-        self.open_add_new_page()
+        self.open_home_page()
         self.contact_cache = None
 
 
@@ -142,7 +142,7 @@ class CONTACTHelper:
 
     def count(self):
         wd = self.app.wd
-        self.open_add_new_page()
+        self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
 
